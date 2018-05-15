@@ -41,7 +41,7 @@ sudo pip install https://github.com/hechtus/mopidy-gmusic/archive/develop.zip
 cd /opt
 
 #Get the files of the Pi MusicBox project
-wget https://github.com/woutervanwijk/Pi-MusicBox/archive/master.zip
+wget https://github.com/robp2175/Pi-MusicBox/archive/develop.zip
 
 #Unpack the zip-file and remove it if you want.
 unzip master.zip
