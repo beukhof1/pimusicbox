@@ -37,15 +37,6 @@ REBOOT=0
 #include code from setsound script
 . /opt/musicbox/setsound.sh
 
-if [ "$INI__musicbox__resize_once" == "1" ]
-then
-    #set resize_once=false in ini file
-    sed -i -e "/^\[musicbox\]/,/^\[.*\]/ s|^\(resize_once[ \t]*=[ \t]*\).*$|\1false\r|" $CONFIG_FILE
-    echo "Performing resize..."
-    sh /opt/musicbox/resizefs.sh -y
-    REBOOT=1
-fi
-
 #get name of device and trim
 HOSTNM=`cat /etc/hostname | tr -cd "[:alnum:]"`
 #get name in ini and trim
@@ -198,13 +189,13 @@ else
 fi
 
 # start shairport if enabled
-if [ "$INI__musicbox__enable_shairport" == "1" ]
-then
-    /etc/init.d/shairport-sync start
-    ln -s /etc/monit/monitrc.d/shairport /etc/monit/conf.d/shairport > /dev/null 2>&1 || true
-else
-    rm /etc/monit/conf.d/shairport > /dev/null 2>&1 || true
-fi
+#if [ "$INI__musicbox__enable_shairport" == "1" ]
+#then
+#    /etc/init.d/shairport-sync start
+#    ln -s /etc/monit/monitrc.d/shairport /etc/monit/conf.d/shairport > /dev/null 2>&1 || true
+#else
+#    rm /etc/monit/conf.d/shairport > /dev/null 2>&1 || true
+#fi
 
 # start spotify connect if enabled
 if [ "$INI__musicbox__enable_connect" == "1" ]
