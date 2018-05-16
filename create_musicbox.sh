@@ -38,7 +38,7 @@ sudo apt-get update -y
 sudo apt-get update && sudo apt-get --yes --no-install-suggests --no-install-recommends install \
   libspotify12 \
   libspotify-dev \
-  python3-setuptools \
+  python-setuptools \
   logrotate \
   alsa-utils \
   wpasupplicant \
@@ -60,8 +60,8 @@ sudo apt-get update && sudo apt-get --yes --no-install-suggests --no-install-rec
   iw \
   iptables \
   build-essential \
-  python3-dev \
-  python3-pip \
+  python-dev \
+  python-pip \
   python-gst-1.0 \
   gstreamer1.0-plugins-good \
   gstreamer1.0-plugins-bad \
@@ -70,10 +70,9 @@ sudo apt-get update && sudo apt-get --yes --no-install-suggests --no-install-rec
   monit \
   upmpdcli \
   watchdog \
-  dropbear \
   mpc \
   dosfstools \
-  python3-cffi
+  python-cffi
   
 pip install --upgrade pip
 
