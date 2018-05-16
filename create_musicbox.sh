@@ -78,7 +78,7 @@ sudo apt-get update && sudo apt-get --yes --no-install-suggests --no-install-rec
 pip install --upgrade pip
 
 #mopidy from pip
-sudo pip3 install -U mopidy \
+sudo pip install -U mopidy \
   mopidy-spotify \
   mopidy-local-sqlite \
   mopidy-local-whoosh \
@@ -122,7 +122,7 @@ cd Pi-MusicBox-master/filechanges
 #Now we are going to copy some files. Backup the old ones if you’re not sure!
 #This sets up the boot and opt directories:
 #manually copy cmdline.txt and config.txt if you want
-mkdir /boot/config
+mkdir -p /boot/config
 cp -R boot/config /boot/config
 cp -R opt/* /opt
 
@@ -134,13 +134,13 @@ chown root:root /etc/firewall/musicbox_iptables
 chmod 600 /etc/firewall/musicbox_iptables
 
 #Next, create a symlink from the package to the /opt/defaultwebclient.
-ln -fsn /usr/local/lib/python2.7/dist-packages/mopidy_musicbox_webclient/static /opt/webclient
-ln -fsn /usr/local/lib/python2.7/dist-packages/mopidy_moped/static /opt/moped
+ln -fsn /usr/local/lib/python3.5/dist-packages/mopidy_musicbox_webclient/static /opt/webclient
+ln -fsn /usr/local/lib/python3.5/dist-packages/mopidy_moped/static /opt/moped
 ln -fsn /opt/webclient /opt/defaultwebclient
 
 #Remove the streamuris.js and point it to the file in /boot/config
-mv /usr/local/lib/python2.7/dist-packages/mopidy_musicbox_webclient/static/js/streamuris.js streamuris.bk
-ln -fsn /boot/config/streamuris.js /usr/local/lib/python2.7/dist-packages/mopidy_musicbox_webclient/static/js/streamuris.js
+mv /usr/local/lib/python3.5/dist-packages/mopidy_musicbox_webclient/static/js/streamuris.js streamuris.bk
+ln -fsn /boot/config/streamuris.js /usr/local/lib/python3.5/dist-packages/mopidy_musicbox_webclient/static/js/streamuris.js
 
 #Let everyone shutdown the system (to support it from the webclient):
 chmod u+s /sbin/shutdown
