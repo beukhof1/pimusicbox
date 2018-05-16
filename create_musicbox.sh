@@ -66,8 +66,29 @@ sudo apt-get update && sudo apt-get --yes --no-install-suggests --no-install-rec
   dosfstools
   
 #mopidy from pip
-sudo pip install -U mopidy mopidy-spotify mopidy-local-sqlite mopidy-local-whoosh mopidy-scrobbler mopidy-soundcloud mopidy-dirble mopidy-tunein mopidy-gmusic mopidy-subsonic mopidy-mobile mopidy-moped mopidy-musicbox-webclient mopidy-websettings mopidy-internetarchive mopidy-podcast mopidy-podcast-itunes mopidy-podcast-gpodder.net Mopidy-Simple-Webclient mopidy-somafm mopidy-spotify-tunigo mopidy-youtube
-
+sudo pip install -U \
+  mopidy \
+  mopidy-spotify \
+  mopidy-local-sqlite \
+  mopidy-local-whoosh \
+  mopidy-scrobbler \
+  mopidy-soundcloud \
+  mopidy-dirble \
+  mopidy-tunein \
+  mopidy-gmusic \
+  mopidy-subsonic \
+  mopidy-mobile \
+  mopidy-moped \
+  mopidy-musicbox-webclient \
+  mopidy-websettings \
+  mopidy-internetarchive \
+  mopidy-podcast \
+  mopidy-podcast-itunes \
+  mopidy-podcast-gpodder.net \
+  Mopidy-Simple-Webclient \
+  mopidy-somafm \
+  mopidy-spotify-tunigo \
+  mopidy-youtube
 #Google Music works a lot better if you use the development version of mopidy-gmusic:
 sudo pip install https://github.com/hechtus/mopidy-gmusic/archive/develop.zip
 
