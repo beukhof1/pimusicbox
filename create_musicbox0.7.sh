@@ -47,25 +47,25 @@ apt-get update
 
 # Fix locale
 apt-get install --yes locales
-echo "Europe/London" > /etc/timezone
+echo "America/New_York" > /etc/timezone
 dpkg-reconfigure -f noninteractive tzdata
-sed -i -e 's/en_US.UTF-8 UTF-8/# en_US.UTF-8 UTF-8/' /etc/locale.gen
-sed -i -e 's/# en_GB.UTF-8 UTF-8/en_GB.UTF-8 UTF-8/' /etc/locale.gen
-echo -e 'LANG="en_GB.UTF-8"\nLANGUAGE="en_GB:en"' > /etc/default/locale
-dpkg-reconfigure --frontend=noninteractive locales
-update-locale LANG=en_GB.UTF-8
+#sed -i -e 's/en_US.UTF-8 UTF-8/# en_US.UTF-8 UTF-8/' /etc/locale.gen
+#sed -i -e 's/# en_GB.UTF-8 UTF-8/en_GB.UTF-8 UTF-8/' /etc/locale.gen
+#echo -e 'LANG="en_GB.UTF-8"\nLANGUAGE="en_GB:en"' > /etc/default/locale
+#dpkg-reconfigure --frontend=noninteractive locales
+#update-locale LANG=en_GB.UTF-8
 
 apt-get remove --yes --purge python-pykka python-pylast
 # https://github.com/pimusicbox/pimusicbox/issues/316
 apt-get remove --yes --purge linux-wlan-ng
 
 # Ensure we reinstall the upstream config.
-apt-get install --yes -o Dpkg::Options::="--force-confmiss" --reinstall avahi-daemon
+#apt-get install --yes -o Dpkg::Options::="--force-confmiss" --reinstall avahi-daemon
 
 # Get the packages required for setting wifi region
 apt-get install --yes wireless-regdb crda
 
-apt-get install exfat-fuse
+apt-get install exfat-fuse -y
 
 # Upgrade!
 apt-get dist-upgrade --yes -o Dpkg::Options::="--force-confnew"
@@ -166,21 +166,28 @@ adduser --quiet --system --no-create-home --home /var/lib/mopidy --ingroup audio
 chown -R mopidy:audio /var/cache/mopidy
 chown -R mopidy:audio /var/lib/mopidy
 chown -R mopidy:audio /var/log/mopidy
-chown -R mopidy:audio /music/playlists
+mkdir -p /music/MusicBox
+mkdir -p /music/Network
+mkdir -p /music/USB
+mkdir -p /music/USB2
+mkdir -p /music/USB3
+mkdir -p /music/USB4
+chmod -R 777 /music
+chown -R mopidy:audio /music
 
-MUSICBOX_SERVICES="ssh dropbear upmpdcli shairport-sync mpd-watchdog"
+MUSICBOX_SERVICES="ssh upmpdcli shairport-sync mpd-watchdog"
 for service in $MUSICBOX_SERVICES
 do
     update-rc.d $service disable
 done
 
 # Update kernel to latest version (4.14.26).
-apt-get install --yes git rpi-update
-PRUNE_MODULES=1 SKIP_WARNING=1 rpi-update f1791cacb3e711a523d46de37faa4bbfcca8ab6a
+#apt-get install --yes git rpi-update
+#PRUNE_MODULES=1 SKIP_WARNING=1 rpi-update f1791cacb3e711a523d46de37faa4bbfcca8ab6a
 
 # Very latest brcm wireless firmware
-wget http://archive.raspberrypi.org/debian/pool/main/f/firmware-nonfree/firmware-brcm80211_20161130-3+rpt3_all.deb
-dpkg -i firmware-brcm80211_20161130-3+rpt3_all.deb
+#wget http://archive.raspberrypi.org/debian/pool/main/f/firmware-nonfree/firmware-brcm80211_20161130-3+rpt3_all.deb
+#dpkg -i firmware-brcm80211_20161130-3+rpt3_all.deb
 
 # Remove unrequired packages (#426)
 apt-get remove --purge --yes xserver-common x11-xkb-utils xkb-data libxkbfile1 \
