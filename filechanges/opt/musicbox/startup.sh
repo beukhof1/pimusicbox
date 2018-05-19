@@ -35,7 +35,7 @@ INI_READ=true
 REBOOT=0
 
 #include code from setsound script
-. /opt/musicbox/setsound.sh
+#. /opt/musicbox/setsound.sh
 
 #get name of device and trim
 HOSTNM=`cat /etc/hostname | tr -cd "[:alnum:]"`
@@ -67,13 +67,13 @@ fi
 echo "MusicBox name is $CLEAN_NAME"
 
 # do the change password stuff
-if [ "$INI__musicbox__root_password" != "" -a "$INI__musicbox__root_password" != "$DEFAULT_ROOT_PASSWORD" ]
-then
-    echo "Setting root user password..."
-    echo "root:$INI__musicbox__root_password" | chpasswd
-    #remove password
-    sed -i -e "/^\[musicbox\]/,/^\[.*\]/ s|^\(root_password[ \t]*=[ \t]*\).*$|\1\r|" $CONFIG_FILE
-fi
+#if [ "$INI__musicbox__root_password" != "" -a "$INI__musicbox__root_password" != "$DEFAULT_ROOT_PASSWORD" ]
+#then
+#    echo "Setting root user password..."
+#    echo "root:$INI__musicbox__root_password" | chpasswd
+#    #remove password
+#    sed -i -e "/^\[musicbox\]/,/^\[.*\]/ s|^\(root_password[ \t]*=[ \t]*\).*$|\1\r|" $CONFIG_FILE
+#fi
 
 #allow shutdown for all users
 chmod u+s /sbin/shutdown
