@@ -54,7 +54,48 @@ dpkg-reconfigure -f noninteractive tzdata
 #echo -e 'LANG="en_GB.UTF-8"\nLANGUAGE="en_GB:en"' > /etc/default/locale
 #dpkg-reconfigure --frontend=noninteractive locales
 #update-locale LANG=en_GB.UTF-8
+    
+#Install Node.js
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+sudo apt-get install -y nodejs build-essential
 
+#Install Electron
+cd /opt
+git clone https://github.com/resin-io/resin-electronjs.git
+cd /opt/resin-electronjs/app
+npm install --unsafe-perm --production && npm cache clean --force && \
+  rm -rf /tmp/* && node_modules/.bin/electron-rebuild
+ #startx /opt/resin-electronjs/app/node_modules/electron/dist/electron /opt/resin-electronjs/app --enable-logging
+ 
+apt-get update && apt-get install -y --no-install-recommends \
+  apt-utils \
+  clang \
+  scrot \
+  xserver-xorg-core \
+  xserver-xorg-input-all \
+  xserver-xorg-video-fbdev \
+  xorg \
+  libxcb-image0 \
+  libxcb-util0 \
+  xdg-utils \
+  libdbus-1-dev \
+  libgtk2.0-dev \
+  libnotify-dev \
+  libgnome-keyring-dev \
+  libgconf2-dev \
+  libasound2-dev \
+  libcap-dev \
+  libcups2-dev \
+  libxtst-dev \
+  libxss1 \
+  libnss3-dev \
+  libsmbclient \
+  libssh-4 \
+  fbset \
+  libexpat-dev 
+  
+  #apt-get --no-install-recommends install xserver-xorg xserver-xorg-video-fbdev xinit pciutils xinput xfonts-100dpi xfonts-75dpi xfonts-scalable
+  
 apt-get remove --yes --purge python-pykka python-pylast
 # https://github.com/pimusicbox/pimusicbox/issues/316
 apt-get remove --yes --purge linux-wlan-ng
