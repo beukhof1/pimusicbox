@@ -42,6 +42,9 @@ deb http://www.lesbonscomptes.com/upmpdcli/downloads/raspbian-wheezy/ unstable m
 deb-src http://www.lesbonscomptes.com/upmpdcli/downloads/raspbian-wheezy/ unstable main
 EOF
 
+##FFMpeg Repo
+sudo add-apt-repository ppa:jonathonf/ffmpeg-3
+
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
 
@@ -67,6 +70,7 @@ npm install --unsafe-perm --production && npm cache clean --force && \
   rm -rf /tmp/* && node_modules/.bin/electron-rebuild
  #startx /opt/resin-electronjs/app/node_modules/electron/dist/electron /opt/resin-electronjs/app --enable-logging
  
+   #libxcb-util0 \
 apt-get update && apt-get install -y --no-install-recommends \
   apt-utils \
   clang \
@@ -76,7 +80,6 @@ apt-get update && apt-get install -y --no-install-recommends \
   xserver-xorg-video-fbdev \
   xorg \
   libxcb-image0 \
-  libxcb-util0 \
   xdg-utils \
   libdbus-1-dev \
   libgtk2.0-dev \
@@ -94,7 +97,13 @@ apt-get update && apt-get install -y --no-install-recommends \
   fbset \
   libexpat-dev \
   imagemagick \
-  pykaraoke
+  pykaraoke \
+  ffmpeg \
+  libav-tools \
+  x264 \
+  x265 
+  
+#apt install lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings openbox obconf obmenu wicd ubuntu-drivers-common mesa-utils mesa-utils-extra compton xorg xserver-xorg nautilus gnome-terminalxubuntu-desktop
   
   #apt-get --no-install-recommends install xserver-xorg xserver-xorg-video-fbdev xinit pciutils xinput xfonts-100dpi xfonts-75dpi xfonts-scalable
   
