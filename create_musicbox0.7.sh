@@ -92,7 +92,8 @@ apt-get update && apt-get install -y --no-install-recommends \
   libsmbclient \
   libssh-4 \
   fbset \
-  libexpat-dev 
+  libexpat-dev \
+  imagemagick
   
   #apt-get --no-install-recommends install xserver-xorg xserver-xorg-video-fbdev xinit pciutils xinput xfonts-100dpi xfonts-75dpi xfonts-scalable
   
