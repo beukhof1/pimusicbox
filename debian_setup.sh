@@ -23,6 +23,26 @@ sudo apt-get install build-essential python-dev python-pip python-gst-1.0 \
 pip install -U mopidy
 
 ##CHECKPOINT
+sudo pip install -U mopidy \
+    mopidy-spotify \
+    mopidy-local-sqlite \
+    mopidy-scrobbler \
+    mopidy-soundcloud \
+    mopidy-dirble \
+    mopidy-tunein \
+    mopidy-gmusic \
+    mopidy-mobile \
+    mopidy-moped \
+    mopidy-musicbox-webclient \
+    mopidy-websettings \
+    mopidy-internetarchive \
+    mopidy-podcast \
+    mopidy-podcast-itunes \
+    Mopidy-Simple-Webclient \
+    mopidy-somafm \
+    mopidy-spotify-tunigo \
+    mopidy-youtube
+
 
 python -m pip install --upgrade pip setuptools
 # Attempted workarounds for SSL/TLS issues in old Python version.
@@ -53,9 +73,6 @@ pip install mopidy-podcast==2.0.1
 pip install mopidy-podcast-itunes==2.0.0
 pip install mopidy-internetarchive==2.0.3
 pip install mopidy-tidal==0.2.2
-
-
-
 
 
 
