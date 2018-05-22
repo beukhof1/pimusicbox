@@ -101,7 +101,8 @@ apt-get update && apt-get install -y --no-install-recommends \
   ffmpeg \
   libav-tools \
   x264 \
-  x265 
+  x265 \
+  unzip
   
 #apt install lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings openbox obconf obmenu wicd ubuntu-drivers-common mesa-utils mesa-utils-extra compton xorg xserver-xorg nautilus gnome-terminalxubuntu-desktop
   
@@ -128,11 +129,11 @@ SHAIRPORT_RUN_DEPS="libc6 libconfig9 libdaemon0 libasound2 libpopt0 libavahi-com
 apt-get install --yes $SHAIRPORT_BUILD_DEPS $SHAIRPORT_RUN_DEPS
 wget https://github.com/mikebrady/shairport-sync/archive/${SHAIRPORT_VERSION}.zip
 unzip ${SHAIRPORT_VERSION}.zip && rm ${SHAIRPORT_VERSION}.zip
-pushd shairport-sync-${SHAIRPORT_VERSION}
+cd shairport-sync-${SHAIRPORT_VERSION}
 autoreconf -i -f
 ./configure --sysconfdir=/etc --with-alsa --with-avahi --with-ssl=openssl --with-metadata --with-systemv
 make && make install
-popd
+cd ..
 rm -rf shairport-sync*
 
 # Download and install Raspberry Pi Compatible ARMHF
