@@ -152,6 +152,9 @@ rm mpd-watchdog_0.3.0-0tkem2_all.deb
 PYTHON_BUILD_DEPS="build-essential python-dev libffi-dev libssl-dev libxml2-dev libxmlsec1-dev"
 apt-get install --yes $PYTHON_BUILD_DEPS
 
+
+#curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py, then python2.7 get-pip.py --force-reinstall
+
 rm -rf /tmp/pip_build_root
 python -m pip install --upgrade pip setuptools
 # Attempted workarounds for SSL/TLS issues in old Python version.
