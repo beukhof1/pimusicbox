@@ -24,8 +24,11 @@ wget -q -O /etc/apt/sources.list.d/mopidy.list http://apt.mopidy.com/mopidy.list
 #update time, to prevent update problems
 ntpdate -u ntp.ubuntu.com
 
-wget -q -O - https://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
-sudo wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/stretch.list
+#wget -q -O - https://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
+#sudo wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/stretch.list
+
+  libspotify12 \
+  libspotify-dev \
 
 #Then install all packages we need with this command:
 sudo add-apt-repository ppa:jean-francois-dockes/upnpp1 -y
@@ -33,9 +36,6 @@ sudo apt-get update -y
 #sudo apt-get update && sudo apt-get --yes --no-install-suggests --no-install-recommends install logrotate alsa-utils wpasupplicant gstreamer0.10-alsa ifplugd gstreamer0.10-fluendo-mp3 gstreamer0.10-tools samba dos2unix avahi-utils alsa-base cifs-utils avahi-autoipd libnss-mdns ntpdate ca-certificates ncmpcpp rpi-update alsa-firmware-loaders iw atmel-firmware firmware-atheros firmware-brcm80211 firmware-ipw2x00 firmware-iwlwifi firmware-libertas firmware-linux firmware-linux-nonfree firmware-ralink firmware-realtek zd1211-firmware iptables build-essential python-dev python-pip python-gst0.10 gstreamer0.10-plugins-good gstreamer0.10-plugins-bad gstreamer0.10-plugins-ugly usbmount monit upmpdcli watchdog dropbear mpc dosfstools
 #sudo apt-get update && sudo apt-get --yes --no-install-suggests --no-install-recommends install logrotate alsa-utils wpasupplicant gstreamer0.10-alsa ifplugd gstreamer0.10-fluendo-mp3 gstreamer0.10-tools samba dos2unix avahi-utils alsa-base cifs-utils avahi-autoipd libnss-mdns ntpdate ca-certificates ncmpcpp alsa-firmware-loaders iw atmel-firmware iptables build-essential python-dev python-pip python-gst0.10 gstreamer0.10-plugins-good gstreamer0.10-plugins-bad gstreamer0.10-plugins-ugly usbmount monit upmpdcli watchdog dropbear mpc dosfstools
 sudo apt-get update && sudo apt-get --yes --no-install-suggests --no-install-recommends install \
-  mopidy \
-  libspotify12 \
-  libspotify-dev \
   python-setuptools \
   logrotate \
   alsa-utils \
@@ -72,31 +72,19 @@ sudo apt-get update && sudo apt-get --yes --no-install-suggests --no-install-rec
   dosfstools \
   python-cffi
   
-pip install --upgrade pip
+#pip install --upgrade pip
 
 #mopidy from pip
-#sudo pip install -U mopidy \
-#  mopidy-spotify \
-#  mopidy-local-sqlite \
-#  mopidy-local-whoosh \
+pip install -U mopidy mopidy-spotify mopidy-local-sqlite mopidy-gmusic mopidy-mobile mopidy-moped mopidy-musicbox-webclient 
+pip install -U mopidy-websettings mopidy-internetarchive Mopidy-Simple-Webclient mopidy-somafm mopidy-spotify-tunigo mopidy-youtube
+  # mopidy-local-whoosh \
 #  mopidy-scrobbler \
 #  mopidy-soundcloud \
 #  mopidy-dirble \
 #  mopidy-tunein \
-#  mopidy-gmusic \  
-#  mopidy-mobile \
-#  mopidy-moped \
-# mopidy-musicbox-webclient \
-#  mopidy-websettings \
-#  mopidy-internetarchive \
-#  mopidy-podcast \
+  #  mopidy-podcast \
 #  mopidy-podcast-itunes \
 #  mopidy-podcast-gpodder.net \
-#  Mopidy-Simple-Webclient \
-#  mopidy-somafm \
-#  mopidy-spotify-tunigo \
-#  mopidy-youtube
-  
  #mopidy-subsonic \
   
 #Google Music works a lot better if you use the development version of mopidy-gmusic:
