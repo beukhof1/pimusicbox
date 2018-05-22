@@ -1,5 +1,18 @@
+#mimic boot partition
+mkdir -p /boot/config
+
+
+# Setup locale
+apt-get install --yes locales
+echo "America/New_York" > /etc/timezone
+dpkg-reconfigure -f noninteractive tzdata
+
+
 sudo add-apt-repository ppa:jean-francois-dockes/upnpp1 -y
 sudo apt-get update -y
+wget -q -O - https://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
+wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/jessie.list
+
 
 apt-get update && apt-get --yes install sudo wget unzip mc ntpdate
 
@@ -15,15 +28,15 @@ apt-get dist-upgrade -y
 #update time, to prevent update problems
 ntpdate -u ntp.ubuntu.com
 
-sudo apt-get install build-essential python-dev python-pip python-gst-1.0 \
+apt-get install build-essential python-dev python-pip python-gst-1.0 \
     gir1.2-gstreamer-1.0 gir1.2-gst-plugins-base-1.0 \
     gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly \
-    gstreamer1.0-tools
-    
-pip install -U mopidy
+    gstreamer1.0-tools python-cffi libssl-dev python-spotify -y
+
+pip search mopidy
 
 ##CHECKPOINT
-sudo pip install -U mopidy \
+pip install -U mopidy \
     mopidy-spotify \
     mopidy-local-sqlite \
     mopidy-scrobbler \
@@ -41,14 +54,14 @@ sudo pip install -U mopidy \
     Mopidy-Simple-Webclient \
     mopidy-somafm \
     mopidy-spotify-tunigo \
-    mopidy-youtube
+    mopidy-youtube 
 
 
 python -m pip install --upgrade pip setuptools
 # Attempted workarounds for SSL/TLS issues in old Python version.
-pip install --upgrade certifi urllib3[secure] requests[security] backports.ssl-match-hostname backports-abc
+pip install certifi urllib3[secure] requests[security] backports.ssl-match-hostname backports-abc
 # Upgrade some dependencies.
-pip install --upgrade gmusicapi pykka pylast pafy youtube-dl
+pip install gmusicapi pykka pylast pafy youtube-dl
 # The lastest versions that are still supported in Wheezy (Gstreamer 0.10).
 pip install tornado==4.4
 pip install mopidy==1.1.2
@@ -97,7 +110,7 @@ usermod -a -G audio mopidy
 mkdir -p /var/lib/mopidy/.config/mopidy
 mkdir -p /var/lib/mopidy/.cache/mopidy
 mkdir -p /var/lib/mopidy/.local/share/mopidy
-chown -R mopidy:mopidy /var/lib/mopidy
+chown -R mopidy:audio /var/lib/mopidy
 
 #**Create Music directory for MP3/OGG/FLAC **
 #Create the directory containing the music and the one where the network share is mounted:
@@ -108,4 +121,15 @@ mkdir -p /music/USB2
 mkdir -p /music/USB3
 mkdir -p /music/USB4
 chmod -R 777 /music
-chown -R mopidy:mopidy /music
+chown -R mopidy:audio /music
+
+
+
+
+
+#cleanup
+apt-get autoremove --yes
+apt-get remove --yes build-essential python-pip
+apt-get clean
+apt-get autoclean
+
