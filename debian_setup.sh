@@ -1,16 +1,7 @@
-
-
-
-
-
-
-
-
 sudo add-apt-repository ppa:jean-francois-dockes/upnpp1 -y
 sudo apt-get update -y
 
-
-apt-get update && apt-get --yes install sudo wget unzip mc
+apt-get update && apt-get --yes install sudo wget unzip mc ntpdate
 
 #Next, issue this command to update the distribution.
 #This is good because newer versions have fixes for audio and usb-issues:
@@ -24,43 +15,44 @@ apt-get dist-upgrade -y
 #update time, to prevent update problems
 ntpdate -u ntp.ubuntu.com
 
-#Then install all packages we need with this command:
-sudo apt-get update && sudo apt-get --yes --no-install-suggests --no-install-recommends install \
-  python-setuptools \
-  logrotate \
-  alsa-utils \
-  wpasupplicant \
-  gstreamer1.0-alsa \
-  ifplugd \
-  gstreamer1.0-fluendo-mp3 \
-  gstreamer1.0-tools \
-  samba \
-  dos2unix \
-  avahi-utils \
-  alsa-base \
-  cifs-utils \
-  avahi-autoipd \
-  libnss-mdns \
-  ntpdate \
-  ca-certificates \
-  ncmpcpp \
-  alsa-firmware-loaders \
-  iw \
-  iptables \
-  build-essential \
-  python-dev \
-  python-pip \
-  python-gst-1.0 \
-  gstreamer1.0-plugins-good \
-  gstreamer1.0-plugins-bad \
-  gstreamer1.0-plugins-ugly \
-  usbmount \
-  monit \
-  upmpdcli \
-  watchdog \
-  mpc \
-  dosfstools \
-  python-cffi
+sudo apt-get install build-essential python-dev python-pip python-gst-1.0 \
+    gir1.2-gstreamer-1.0 gir1.2-gst-plugins-base-1.0 \
+    gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly \
+    gstreamer1.0-tools
+    
+pip install -U mopidy
+
+##CHECKPOINT
+
+python -m pip install --upgrade pip setuptools
+# Attempted workarounds for SSL/TLS issues in old Python version.
+pip install --upgrade certifi urllib3[secure] requests[security] backports.ssl-match-hostname backports-abc
+# Upgrade some dependencies.
+pip install --upgrade gmusicapi pykka pylast pafy youtube-dl
+# The lastest versions that are still supported in Wheezy (Gstreamer 0.10).
+pip install tornado==4.4
+pip install mopidy==1.1.2
+pip install mopidy-musicbox-webclient==2.5.0
+pip install --no-deps --upgrade https://github.com/pimusicbox/mopidy-websettings/zipball/develop
+pip install mopidy-websettings==0.2.3
+pip install mopidy-mopify==1.6.1
+pip install mopidy-mobile==1.8.0
+pip install mopidy-youtube==2.0.2
+pip install mopidy-gmusic==2.0.0
+pip install mopidy-spotify-web==0.3.0
+pip install mopidy-spotify-tunigo==1.0.0
+# Custom version with Web API OAuth fix backported from v3.1.0
+pip install --no-deps --upgrade https://github.com/pimusicbox/mopidy-spotify/zipball/backport-oauth
+pip install mopidy-tunein==0.4.1
+pip install mopidy-local-sqlite==1.0.0
+pip install mopidy-scrobbler==1.2.0
+# Unreleased mopidy-soundcloud has some useful fixes.
+pip install --no-deps --upgrade https://github.com/mopidy/mopidy-soundcloud/archive/faeb6710980f12b50b03bf78c1878be751b8e21a.zip
+pip install mopidy-dirble==1.3.0
+pip install mopidy-podcast==2.0.1
+pip install mopidy-podcast-itunes==2.0.0
+pip install mopidy-internetarchive==2.0.3
+pip install mopidy-tidal==0.2.2
 
 
 
