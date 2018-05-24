@@ -9,7 +9,7 @@
 # In order to enable or disable this script just change the execution
 # bits.
 #
-
+/usr/share/usbmount/usbmount &
 /opt/musicbox/startup.sh 2>&1 | tee /var/log/musicbox_startup.log
 
 exit 0
